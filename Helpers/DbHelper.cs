@@ -10,7 +10,7 @@ namespace CAOSelect.Helpers
     {
         public static SqlConnection GetConnection() 
         {
-            return new SqlConnection(@"Data Source = DESKTOP - 61OFRRH; Initial Catalog = CAO Check;");
+            return new SqlConnection(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = CAOCheck;");
         }
     }
 }

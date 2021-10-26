@@ -4,17 +4,17 @@
 
 
 <table>
-    <column>
-        <row>Course ID</row>
-        <row>Course Name</row>
-        <row>Level</row>
-    </column>
+    <tr>
+        <td><b>Course ID</b></td>
+        <td><b>Course Name</b></td>
+        <td><b>Level</b></td>
+    </tr>
     @foreach(var item in ViewBag.courses){
-    <column>
-        <row>@item.CourseID</row>
-        <row>@item.CourseName</row>
-        <row>@item.Level</row>
-    </column>
+    <tr>
+        <td>@item.CourseID</td>
+        <td>@item.CourseName</td>
+        <td>@item.Level</td>
+    </tr>
     }
 </table>
 

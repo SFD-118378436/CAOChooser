@@ -7,7 +7,7 @@ namespace CAOSelect.Models
 {
     public class CAOSubject
     {
-        public int CourseID { get; set; }
+        public String CourseID { get; set; }
         public String CourseName { get; set; }
         public String Description { get; set; }
         public int KeyWordCount { get; set; }
