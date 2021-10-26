@@ -11,5 +11,6 @@ namespace CAOSelect.Models
         public String CourseName { get; set; }
         public String Description { get; set; }
         public int KeyWordCount { get; set; }
+        public int Level { get; set; }
     }
 }
