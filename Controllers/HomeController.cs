@@ -20,13 +20,14 @@ namespace CAOSelect.Controllers
 
         public IActionResult Index()
         {
-            List<CAOSubject> courses = CourseDAO.getCourses();
-            ViewBag.courses = courses;
             return View();
         }
 
         public IActionResult Privacy()
         {
+            CourseDAO courseData = new CourseDAO();
+            List<CAOSubject> courses = courseData.getCourse();
+            ViewBag.courses = courses;
             return View();
         }
 
