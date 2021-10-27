@@ -28,6 +28,9 @@ namespace CAOSelect.Controllers
 
         public IActionResult Privacy()
         {
+            CourseDAO courseData = new CourseDAO();
+            List<CAOSubject> courses = courseData.getCourse();
+            ViewBag.courses = courses;
             return View();
         }
 
