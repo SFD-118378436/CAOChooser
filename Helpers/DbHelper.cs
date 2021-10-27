@@ -10,7 +10,7 @@ namespace CAOSelect.Helpers
     {
         public static SqlConnection GetConnection() 
         {
-            return new SqlConnection(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = CAOCheck;");
+            return new SqlConnection(@"Data Source=fypdatacao.database.windows.net;Initial Catalog=CAOCHECK;User ID=sduggan;Password=Knockboy@2;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
     }
 }
