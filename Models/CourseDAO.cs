@@ -9,7 +9,7 @@ namespace CAOSelect.Models
 {
     public class CourseDAO
     {
-        //
+        
         public  List<CAOSubject>  getCourse()
         {
             using (var db = DbHelper.GetConnection())

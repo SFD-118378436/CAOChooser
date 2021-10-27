@@ -21,7 +21,7 @@ namespace CAOSelect.Controllers
         public IActionResult Index()
         {
             CourseDAO courseData = new CourseDAO();
-            List<CAOSubject> courses = courseData.getCourse();
+           List<CAOSubject> courses = courseData.getCourse();
             ViewBag.courses = courses;
             return View();
         }
