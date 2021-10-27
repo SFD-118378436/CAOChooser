@@ -3,4 +3,18 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<table>
+    <column>
+        <row>Course ID</row>
+        <row>Course Name</row>
+        <row>Level</row>
+    </column>
+    @foreach (var item in ViewBag.courses)
+    {
+        <column>
+            <row>@item.CourseID</row>
+            <row>@item.CourseName</row>
+            <row>@item.Level</row>
+        </column>
+    }
+</table>

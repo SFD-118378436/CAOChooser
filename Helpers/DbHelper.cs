@@ -8,9 +8,12 @@ namespace CAOSelect.Helpers
 {
     public class DbHelper
     {
-        public static SqlConnection GetConnection() 
+        public static SqlConnection GetConnection()
         {
             return new SqlConnection(@"Data Source=fypdatacao.database.windows.net;Initial Catalog=CAOCHECK;User ID=sduggan;Password=Knockboy@2;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
         }
     }
 }
+
+
