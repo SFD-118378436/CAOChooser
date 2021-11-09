@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Add Subjects";
+}
+
+<form>
+    <table class="table">
+        <tr>
+            <td>Subject(s)</td>
+            <td>Level</td>
+        </tr>
+        @for (int i = 0; i <= ViewBag.num; i++)
+        {
+            <tr>
+                <td class="container">
+
+                    <select class="dropdown-header" id="tlidrop" name="subjectString">
+                        @foreach (var subject in ViewBag.subjects)
+                        {
+                            <option name="searchString@i" value="@subject.SubjectName">@subject.SubjectName</option>
+                        }
+                    </select>
+                </td>
+                <td>
+
+                    <select class="dropdown" id="lvl">
+                        <option>Higher</option>
+                        <option>Ordinary</option>
+                        <option>Foundation</option>
+                    </select>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td><input class="btn btn-success" type="submit"/></td>
+        </tr>
+    </table>
+
+</form>

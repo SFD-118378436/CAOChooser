@@ -12,5 +12,7 @@ namespace CAOSelect.Models
         public String Description { get; set; }
         public int KeyWordCount { get; set; }
         public int Level { get; set; }
+
+        public String ThirdLevelInstitute { get; set; }
     }
 }

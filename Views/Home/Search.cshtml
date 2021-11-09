@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Search";
+}
+
+<div class="container">
+    <h3>All results for your search "@ViewBag.search"</h3>
+</div>
+
+<div class="container">
+    <table class="table ">
+        <tr>
+            <td><b>Course Code</b></td>
+            <td><b>Course Name</b></td>
+            <td><b>Level</b></td>
+            <td><b>Third Level Institute</b></td>
+        </tr>
+        @foreach (var item in ViewBag.subjects)
+        {
+            <tr>
+                <td>@item.CourseID</td>
+                <td>@item.CourseName</td>
+                <td>@item.Level</td>
+                <td>@item.ThirdLevelInstitute</td>
+            </tr>
+        }
+    </table>
+
+</div>
+

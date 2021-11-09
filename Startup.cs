@@ -51,6 +51,9 @@ namespace CAOSelect
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "ViewCourses",
+                    pattern: "/ViewCourses", new { controller = "Home", action = "ViewCourses" });
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });

@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container">
+    <label for="searchString">Search by Name:</label>
+    <form asp-controller="Home" asp-action="Search" method="post">
+        <!--Passing in the values needed for search query-->
+        <input name="searchString" type="text" />
+        <input type="hidden" name="action" value="search"/>
+        <input type="submit" name="submit" />
+    </form>
+</div>
+
+<div class="container">
+    <br/>
+</div>
+
+<div class="container">
+    <label for="tlidrop">Third Level Institution:</label>
+    <form asp-controller="Home" asp-action="Search" method="post">
+
+        <input type="hidden" name="action" value="collegeFilter" />
+        <!--https://stackoverflow.com/questions/7231157/how-to-submit-form-on-change-of-dropdown-list-->
+        <select class="dropdown-header" id="tlidrop"  name="searchString" onchange="this.form.submit()">
+            @foreach (var college in ViewBag.colleges)
+            {
+                <option name="searchString" value="@college">@college</option>
+            }
+        </select>
+    </form>
+</div>
+
+<div class="container">
+    <table class="table">
+        <tr>
+            <td><b>Course ID</b></td>
+            <td><b>Course Name</b></td>
+            <td><b>Level</b></td>
+            <td><b>Third Level Institute</b></td>
+        </tr>
+        @foreach (var item in ViewBag.courses)
+        {
+            <tr>
+                <td>@item.CourseID</td>
+                <td>@item.CourseName</td>
+                <td>@item.Level</td>
+                <td>@item.ThirdLevelInstitute</td>
+            </tr>
+        }
+    </table>
+
+</div>

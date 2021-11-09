@@ -1,4 +1,5 @@
-﻿using CAOSelect.Models;
+﻿using CAOSelect.Data;
+using CAOSelect.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,17 +21,80 @@ namespace CAOSelect.Controllers
 
         public IActionResult Index()
         {
+            return View();
+        }
+
+        public IActionResult ViewCourses()
+        {
             CourseDAO courseData = new CourseDAO();
-           List<CAOSubject> courses = courseData.getCourse();
+            List<CAOSubject> courses = courseData.getCourse();
+            List<String> colleges = courseData.getThirdLevelInstitute();
+
+            ViewBag.colleges = colleges;
             ViewBag.courses = courses;
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Search(String searchString, string action)
         {
+            //Getting all course data from Database
             CourseDAO courseData = new CourseDAO();
             List<CAOSubject> courses = courseData.getCourse();
-            ViewBag.courses = courses;
+
+            List<CAOSubject> subjects = new List<CAOSubject>();
+
+            //If the action is search
+            if (action == "search")
+            {    
+                foreach (var c in courses)
+                {
+                    //Seeing if course contains the searchString
+                    if (c.CourseName.Contains(searchString))
+                    {
+                        subjects.Add(c);
+                    }
+                }
+                //What to do if action is college
+            } else if(action == "collegeFilter")
+            {
+                foreach (var c in courses)
+                {
+                    //Checking to see if courses college equal to teh searchstring value
+                    if (c.ThirdLevelInstitute.Equals(searchString))
+                    {
+                        subjects.Add(c);
+                    }
+                }
+            } 
+
+            //Adding subject list and search item to string
+            ViewBag.subjects = subjects;
+            ViewBag.search = searchString;
+            return View();
+        }
+
+        //Testing to use json and AJAX search bars
+        public JsonResult searchbar(string searchString)
+        {
+            //Getting all course data from Database
+            CourseDAO courseData = new CourseDAO();
+            List<CAOSubject> courses = courseData.getCourse();
+
+            List<CAOSubject> subjects = new List<CAOSubject>();
+
+            foreach (var c in courses) {
+                if (c.CourseName.Contains(searchString))
+                {
+                    subjects.Add(c);
+                }
+            }
+
+            return Json(subjects);
+        }
+
+       
+        public IActionResult Privacy()
+        {
             return View();
         }
 
