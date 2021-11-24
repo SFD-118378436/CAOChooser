@@ -25,6 +25,8 @@ namespace CAOSelect
         {
             services.AddControllersWithViews();
 
+            //Adding support for sessions
+            services.AddSession();
 
         }
 
@@ -43,6 +45,9 @@ namespace CAOSelect
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            //adding support for sessions
+            app.UseSession();
 
             app.UseRouting();
 

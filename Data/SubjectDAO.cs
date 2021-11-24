@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace CAOSelect.Data
 {
     public class SubjectDAO
@@ -17,7 +18,7 @@ namespace CAOSelect.Data
             using (var db = DbHelper.GetConnection())
             {
                 //creating a list 
-                return this.EditableItems = db.Query<LCSubject>("SELECT * FROM LCSubject;").ToList();
+                return this.EditableItems = db.Query<LCSubject>("SELECT * FROM LCSubject ORDER BY SubjectName;").ToList();
             }
         }
 

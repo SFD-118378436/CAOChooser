@@ -19,7 +19,7 @@ namespace CAOSelect.Data
             using (var db = DbHelper.GetConnection())
             {
                 //creating a list 
-               return this.EditableItems = db.Query<CAOSubject>("SELECT * FROM CAOSUBJECT;").ToList();
+               return this.EditableItems = db.Query<CAOSubject>("SELECT * FROM CAOSUBJECT ORDER BY ThirdLevelInstitute, COURSEID;").ToList();
             }
         }
         public List<CAOSubject> EditableItems { get; set; }
@@ -30,7 +30,7 @@ namespace CAOSelect.Data
             using (var db = DbHelper.GetConnection())
             {
                 //creating a list 
-                return  db.Query<String>("SELECT DISTINCT ThirdLevelInstitute FROM CAOSUBJECT;").ToList();
+                return  db.Query<String>("SELECT DISTINCT ThirdLevelInstitute FROM CAOSUBJECT ORDER BY ThirdLevelInstitute;").ToList();
             }
         }
 

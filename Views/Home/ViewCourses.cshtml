@@ -4,33 +4,62 @@
 @{
 }
 
-<div class="container">
-    <label for="searchString">Search by Name:</label>
-    <form asp-controller="Home" asp-action="Search" method="post">
-        <!--Passing in the values needed for search query-->
-        <input name="searchString" type="text" />
-        <input type="hidden" name="action" value="search"/>
-        <input type="submit" name="submit" />
-    </form>
-</div>
+
+<form asp-controller="Home" asp-action="Search" method="post">
+    <table>
+        <tr>
+            <td>Search by Name:</td>
+            <td>Third Level Institution:</td>
+            <td>Level:</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="container">
+                    <!--Passing in the values needed for search query-->
+                    <input name="searchString" type="search" />
+                    <input type="hidden" name="importSubjects" value="Viewbag.courses" />
+                    <input type="hidden" name="action" value="search" />
+                </div>
+            </td>
+            <td>
+                <div class="container">
+                    <!--https://stackoverflow.com/questions/7231157/how-to-submit-form-on-change-of-dropdown-list -->
+                    <select class="dropdown-header" id="tlidrop" name="college">
+
+                        <option value="none" selected disabled hidden>
+                            Select an Option
+                        </option>
+                        <!--Looping through all colleges and adding them to a drop down list-->
+                        @foreach (var college in ViewBag.colleges)
+                        {
+                            <option class="dropdown-item" name="college" value="@college">@college</option>
+                        }
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div class="container">
+                    <select class=" dropdown-header" id="lvldrop" name="level">
+                        <option value="none" selected disabled hidden>
+                            Select an Option
+                        </option>
+                        <!--Populating the dropdown list-->
+                        <option class="dropdown-item" name="level" value="6">6</option>
+                        <option class="dropdown-item" name="level" value="7">7</option>
+                        <option class="dropdown-item" name="level" value="8">8</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <input type="submit" name="submit" />
+            </td>
+        </tr>
+    </table>
+
+</form>
 
 <div class="container">
-    <br/>
-</div>
-
-<div class="container">
-    <label for="tlidrop">Third Level Institution:</label>
-    <form asp-controller="Home" asp-action="Search" method="post">
-
-        <input type="hidden" name="action" value="collegeFilter" />
-        <!--https://stackoverflow.com/questions/7231157/how-to-submit-form-on-change-of-dropdown-list-->
-        <select class="dropdown-header" id="tlidrop"  name="searchString" onchange="this.form.submit()">
-            @foreach (var college in ViewBag.colleges)
-            {
-                <option name="searchString" value="@college">@college</option>
-            }
-        </select>
-    </form>
+    <br />
 </div>
 
 <div class="container">
@@ -44,7 +73,7 @@
         @foreach (var item in ViewBag.courses)
         {
             <tr>
-                <td>@item.CourseID</td>
+                <td><a asp-action="ViewIndividualCourse" asp-controller="Home" asp-route-CourseID="@item.CourseID">@item.CourseID</a></td>
                 <td>@item.CourseName</td>
                 <td>@item.Level</td>
                 <td>@item.ThirdLevelInstitute</td>

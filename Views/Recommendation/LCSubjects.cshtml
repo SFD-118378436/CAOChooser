@@ -3,38 +3,49 @@
     ViewData["Title"] = "Add Subjects";
 }
 
-<form>
+<form asp-action="ChooseCourses" asp-controller="Recommendation" method="post">
     <table class="table">
         <tr>
             <td>Subject(s)</td>
             <td>Level</td>
         </tr>
-        @for (int i = 0; i <= ViewBag.num; i++)
+
+        @{ 
+            List<LCSubjectList> subjects = new List<LCSubjectList>();
+        }
+
+        @for (int i = 0; i < ViewBag.num; i++)
         {
             <tr>
                 <td class="container">
 
-                    <select class="dropdown-header" id="tlidrop" name="subjectString">
+                    <select class="dropdown-header" id="tlidrop" name="@("subject" + i)">
+                        <option value="none" selected disabled hidden>
+                            Select an Option
+                        </option>
                         @foreach (var subject in ViewBag.subjects)
                         {
-                            <option name="searchString@i" value="@subject.SubjectName">@subject.SubjectName</option>
+                            //https://stackoverflow.com/questions/8936516/combining-code-and-text-in-html-attribute-with-razor
+                            <option name="@subject.SubjectName" value="@subject.SubjectName">@subject.SubjectName</option>
                         }
                     </select>
+               
                 </td>
                 <td>
 
-                    <select class="dropdown" id="lvl">
-                        <option>Higher</option>
-                        <option>Ordinary</option>
-                        <option>Foundation</option>
+                    <select class="dropdown" id="lvl" name="@("level" + i)">
+                        <option value="none" selected disabled hidden>
+                            Select an Option
+                        </option>
+                        <option name="Higher" value="Higher">Higher</option>
+                        <option name="Ordinary" value="Ordinary">Ordinary</option>
+                        <option name="Foundation" value="Lower">Foundation</option>
                     </select>
                 </td>
             </tr>
+            
         }
-        <tr>
-            <td></td>
-            <td><input class="btn btn-success" type="submit"/></td>
-        </tr>
     </table>
+        <input class="btn btn-success" type="submit" />
+    </form>
 
-</form>
