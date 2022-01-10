@@ -24,5 +24,11 @@ namespace CAOSelect.Models
 
         [Display(Name = "Third Level Institute:")]
         public String ThirdLevelInstitute { get; set; }
+
+        //Code used to gatehr ratios
+        public int creative { get; set; }
+        public int problemsolving { get; set; }
+        public int analytical { get; set; }
+        public int interpersonal { get; set; }
     }
 }

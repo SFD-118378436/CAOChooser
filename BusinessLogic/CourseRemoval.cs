@@ -32,12 +32,10 @@ namespace CAOSelect.BusinessLogic
                 //if the method returns false than remove from the list
                 if(val == false)
                 {
-
                     CAOSubject course = cmang.getCoursebyID(r.course.CourseID);
                     //using linq to remove all courses with matching courseIDs.
                     //https://stackoverflow.com/questions/22901225/how-to-remove-a-specific-object-from-a-listt
-                    originalCourses.RemoveAll(x => x.CourseID == course.CourseID);
-                       
+                    originalCourses.RemoveAll(x => x.CourseID == course.CourseID); 
                 }
             }
         
