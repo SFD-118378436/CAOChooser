@@ -43,7 +43,7 @@ namespace CAOSelect.Data
                 r.subject = sub;
 
                 //letting the level equal
-                r.Level = e.Level;
+                r.Level = e.SubjectLevel;
 
                 //Adding the item to req1Subjects
                 req1Subjects.Add(r);
@@ -61,7 +61,7 @@ namespace CAOSelect.Data
         public String CourseID { get; set; }
         public int SubjectID { get; set; }
 
-        public String Level { get; set; }
+        public String SubjectLevel { get; set; }
     }
     
 }

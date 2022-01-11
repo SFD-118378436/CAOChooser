@@ -51,7 +51,12 @@ namespace CAOSelect.BusinessLogic
             //if the subject is found in both lists return true
             if(r.subject.SubjectName == s.SubjectName)
             {
-                return true;
+                    if (r.Level == s.Level)
+                    {
+                        return true;
+                    } else if (r.Level  == ""){
+                        return true;
+                    }
             } 
         }
         return false;

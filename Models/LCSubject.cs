@@ -15,7 +15,6 @@ namespace CAOSelect.Models
     public class LCSubjectList
     {
    
-
         public LCSubjectList(string subject, string level)
         {
             this.SubjectName = subject;
