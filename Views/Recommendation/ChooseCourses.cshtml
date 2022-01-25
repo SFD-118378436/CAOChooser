@@ -8,73 +8,73 @@
 <html>
 <head>
     <style>
-			/* Stacked Cards component css */
-			.thisbody {
-			  overflow-x: hidden;
-			  font-family: "Open Sans";
-			  font-size: 12px;
-			  background: #BFC7D0;
-			  padding: 10%;
-			}
+        /* Stacked Cards component css */
+        .thisbody {
+            overflow-x: hidden;
+            font-family: "Open Sans";
+            font-size: 12px;
+            background: #BFC7D0;
+            padding: 10%;
+        }
 
-			.no-transition {
-			  -webkit-transition: none ! important;
-			  -o-transition: none ! important;
-			  transition: none ! important;
-			}
+        .no-transition {
+            -webkit-transition: none !important;
+            -o-transition: none !important;
+            transition: none !important;
+        }
 
-			.stackedcards-overflow {
-				overflow-y: hidden !important;
-			}
+        .stackedcards-overflow {
+            overflow-y: hidden !important;
+        }
 
-			.stackedcards.init {
-				opacity: 0;/* set the opacity to 0 if you want a fade-in effect to stacked cards on page load */
-			}
+        .stackedcards.init {
+            opacity: 0; /* set the opacity to 0 if you want a fade-in effect to stacked cards on page load */
+        }
 
-			.stackedcards {
-				position: relative;
-			}
+        .stackedcards {
+            position: relative;
+        }
 
-			.stackedcards * {
-				-webkit-user-select: none;
-						-moz-user-select: none;
-						 -ms-user-select: none;
-					 user-select: none;
-			}
+            .stackedcards * {
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
 
-			.stackedcards--animatable {
-				-webkit-transition: all 400ms ease;
-						-o-transition: all 400ms ease;
-						transition: all 400ms ease;
-			}
+        .stackedcards--animatable {
+            -webkit-transition: all 400ms ease;
+            -o-transition: all 400ms ease;
+            transition: all 400ms ease;
+        }
 
-			.stackedcards .stackedcards-container > *,
-			.stackedcards-overlay {
-				position: absolute;
-				width: 100%; /* set 100% */
-				height: 300px; /* set 100% */
-				will-change: transform, opacity;
-				top: 0;
-				border-radius: 10px;
-			}
+        .stackedcards .stackedcards-container > *,
+        .stackedcards-overlay {
+            position: absolute;
+            width: 100%; /* set 100% */
+            height: 300px; /* set 100% */
+            will-change: transform, opacity;
+            top: 0;
+            border-radius: 10px;
+        }
 
-			.stackedcards-overlay.left > div,
-			.stackedcards-overlay.right > div,
-			.stackedcards-overlay.top > div {
-				width: 100%;
-				height: 100%;
-				-webkit-box-align: center;
-					-ms-flex-align: center;
-						align-items: center;
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				-webkit-box-pack: center;
-					-ms-flex-pack: center;
-						justify-content: center;
-			}
+            .stackedcards-overlay.left > div,
+            .stackedcards-overlay.right > div,
+            .stackedcards-overlay.top > div {
+                width: 100%;
+                height: 100%;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+            }
 
-			.card {
+        .card {
             position: relative;
             display: -ms-flexbox;
             display: flex;
@@ -98,148 +98,148 @@
             margin-bottom: 0.75rem;
         }
 
-			.stackedcards-overlay.left,
-			.stackedcards-overlay.right,
-			.stackedcards-overlay.top {
-				-webkit-box-align: center;
-					-ms-flex-align: center;
-						align-items: center;
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				-webkit-box-pack: center;
-					-ms-flex-pack: center;
-						justify-content: center;
-				left: 0;
-				opacity: 0;
-				top: 0;
-				height: 100%;
-				font-size: 24px; /* this style was added only for better preview */
-				text-transform: uppercase; /* this style was added only for better preview */
-				font-weight: 500; /* this style was added only for better preview */
-				color: #fff; /* this style was added only for better preview */
-			}
+        .stackedcards-overlay.left,
+        .stackedcards-overlay.right,
+        .stackedcards-overlay.top {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            left: 0;
+            opacity: 0;
+            top: 0;
+            height: 100%;
+            font-size: 24px; /* this style was added only for better preview */
+            text-transform: uppercase; /* this style was added only for better preview */
+            font-weight: 500; /* this style was added only for better preview */
+            color: #fff; /* this style was added only for better preview */
+        }
 
-			.stackedcards-overlay.top {
-				background: #E38568;
-			}
+        .stackedcards-overlay.top {
+            background: #E38568;
+        }
 
-			.stackedcards-overlay.right {
-				background: #7BB3C5;
-			}
+        .stackedcards-overlay.right {
+            background: #7BB3C5;
+        }
 
-			.stackedcards-overlay.left {
-				background: #E58D93;
-			}
+        .stackedcards-overlay.left {
+            background: #E58D93;
+        }
 
-			.stackedcards-overlay.left:empty,
-			.stackedcards-overlay.right:empty,
-			.stackedcards-overlay.top:empty {
-			  display: none !important;
-			}
+            .stackedcards-overlay.left:empty,
+            .stackedcards-overlay.right:empty,
+            .stackedcards-overlay.top:empty {
+                display: none !important;
+            }
 
-			.stackedcards-overlay-hidden {
-				display: none;
-			}
+        .stackedcards-overlay-hidden {
+            display: none;
+        }
 
-			.stackedcards-origin-bottom {
-				-webkit-transform-origin: bottom;
-						-ms-transform-origin: bottom;
-					transform-origin: bottom;
-			}
+        .stackedcards-origin-bottom {
+            -webkit-transform-origin: bottom;
+            -ms-transform-origin: bottom;
+            transform-origin: bottom;
+        }
 
-			.stackedcards-origin-top {
-				-webkit-transform-origin: top;
-						-ms-transform-origin: top;
-					transform-origin: top;
-			}
+        .stackedcards-origin-top {
+            -webkit-transform-origin: top;
+            -ms-transform-origin: top;
+            transform-origin: top;
+        }
 
-			.stackedcards-bottom,
-			.stackedcards-top,
-			.stackedcards-none {
-				background: #fff; /* set card background background */
-				height: 100%;
-			}
+        .stackedcards-bottom,
+        .stackedcards-top,
+        .stackedcards-none {
+            background: #fff; /* set card background background */
+            height: 100%;
+        }
 
-			.stackedcards .stackedcards-container > :nth-child(1) {
-				position: relative;
-				display: block;
-			}
+        .stackedcards .stackedcards-container > :nth-child(1) {
+            position: relative;
+            display: block;
+        }
 
-			/* global actions buttons*/
-			.global-actions {
-				display: -webkit-inline-box;
-				display: -ms-inline-flexbox;
-				display: inline-flex;
-				width: 100%;
-				margin-top: 10px;
-			}
+        /* global actions buttons*/
+        .global-actions {
+            display: -webkit-inline-box;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            width: 100%;
+            margin-top: 10px;
+        }
 
-			.top-action,
-			.right-action,
-			.left-action {
-				width: 100%;
-				height: 50px;
-				border-radius: 10px;
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				-webkit-box-align: center;
-					-ms-flex-align: center;
-						align-items: center;
-				-webkit-box-pack: center;
-					-ms-flex-pack: center;
-						justify-content: center;
-				text-transform: uppercase;
-				font-weight: 500;
-				color: #fff;
-			}
+        .top-action,
+        .right-action,
+        .left-action {
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: #fff;
+        }
 
-			.top-action {
-				background: #E38568;
-				margin: 0 10px;
-			}
+        .top-action {
+            background: #E38568;
+            margin: 0 10px;
+        }
 
-			.right-action { background: #7BB3C5; }
-			.left-action { background: #E58D93; }
+        .right-action {
+            background: #7BB3C5;
+        }
 
-			/* elements on stacked cards */
-			.card-item { background: #FFFFFF; }
-            </style>
+        .left-action {
+            background: #E58D93;
+        }
+
+        /* elements on stacked cards */
+        .card-item {
+            background: #FFFFFF;
+        }
+    </style>
+    <script src="~/js/site.js"></script>
     <script>
+
+        //Declaring variables to store values
+        var creativevalue = 0;
+        var analyticalvalue = 0;
+        var problemsolvingvalue = 0;
+        var interpersonalvalue = 0;
+
+
+        var postionCurrent;
+
+        //Declaring an array and importing from razor
+        var myArray = [];
+
+            @foreach (var c in ViewBag.Courses)
+            {
+            <text>
+                var course = { creative: @c.creative, analytical: @c.analytical, problemsolving: @c.problemsolving, interpersonal: @c.interpersonal };
+                myArray.push(course);
+            </text>
+            }
+
         // JavaScript Document
         document.addEventListener("DOMContentLoaded", function (event) {
 
             function stackedCards() {
-
-                //Declaring an array and importing from razor
-                var myArray = [];
-
-                 @foreach(var c in ViewBag.Courses)
-                {
-                    <text>
-                        var course = { creative: 0, analytical: 0, problemsolving: 0, interpersonal: 0 };
-
-                        try {
-                            course.analytical = @c.analytical;
-                            course.creative = @c.creative;
-                            course.problemsolving = @c.problemsolving;
-                            course.interpersonal = @c.interpersonal;
-                        } catch (ex) {
-                            console.error(ex);
-                        }
-
-                        myArray.push(course);
-
-                    </text>
-                }
-
-
-                //Declaring variables to store values
-                var creativevalue = 0;
-                var analyticalvalue = 0;
-                var problemsolvingvalue = 0;
-                var interpersonalvalue = 0;
 
                 var stackedOptions = 'Top'; //Change stacked cards view from 'Bottom', 'Top' or 'None'.
                 var rotate = true; //Activate the elements' rotation for each move on stacked cards.
@@ -345,22 +345,7 @@
                     obj.classList.remove('init');
                 }, 150);
 
-                //Code to subtract values
-                function subtractValues() {
-
-                     creativevalue = creativevalue - myArray[currentPosition].creative;
-                     interpersonalvalue = interpersonalvalue - myArray[currentPosition].interpersonal;
-                     analyticalvalue = analyticalvalue - myArray[currentPosition].analytical;
-                     problemsolvingvalue = problemsolvingvalue - myArray[currentPosition].problemsolving;
-                }
-
-                function addValues() {
-                     //Code to add values
-                     creativevalue = creativevalue + myArray[currentPosition].creative;
-                     interpersonalvalue = interpersonalvalue + myArray[currentPosition].interpersonal;
-                     analyticalvalue = analyticalvalue + myArray[currentPosition].analytical;
-                     problemsolvingvalue = problemsolvingvalue + myArray[currentPosition].problemsolving;
-                }
+                
 
                 function backToMiddle() {
 
@@ -451,7 +436,7 @@
 
                 //Swipe active card to left.
                 function onSwipeLeft() {
-                    subtractValues();
+                    subtractValues(myArray[currentPosition]);
                     removeNoTransition();
                     transformUi(-1000, 0, 0, currentElementObj);
                     if (useOverlays) {
@@ -468,7 +453,7 @@
 
                 //Swipe active card to right.
                 function onSwipeRight() {
-                    addValues();
+                    addValues(myArray[currentPosition]);
                     removeNoTransition();
                     transformUi(1000, 0, 0, currentElementObj);
                     if (useOverlays) {
@@ -932,6 +917,8 @@
                     buttonLeft.addEventListener('click', onActionLeft, false);
                 buttonRight.addEventListener('click', onActionRight, false);
 
+                positionCurrent = currentPosition;
+
             }
 
             stackedCards();
@@ -955,6 +942,7 @@
                         </div>
                     </div>
                 }
+
             </div>
 
         <div class="stackedcards--animatable stackedcards-overlay top"></div>
@@ -962,11 +950,29 @@
         <div class="stackedcards--animatable stackedcards-overlay left">NO</div>
         </div>
     <div class="global-actions">
-        <div class="left-action">No</div>
+        <div class="left-action" >No</div>
         <div class="right-action">Yes</div>
     </div>
     </div>
-    <form asp-action="" asp-controller="">
-    </form>
+
+    <div class="container-fluid">
+        <div class=" mt-2 col-md-12 text-center">
+            <form asp-action="YourRecommendedCourse" asp-controller="Recommendation" onsubmit="valueAssign()">
+                <input type="hidden" name="creative" id="txtCreative" />
+                <input type="hidden" name="problemsolving" id="txtProblemSolving" />
+                <input type="hidden" name="analytical" id="txtAnalytical" />
+                <input type="hidden" name="interpersonal" id="txtInterpersonal" />
+                <input type="submit" class="btn btn-success" id="btnSubmit" />
+            </form>
+        </div>
+    </div>
+
+    <script>
+        if (postionCurrent < 20) {
+            document.getElementById("btnSubmit").disabled = true;
+        } else {
+            document.getElementById("btnSubmit").disabled = false;
+        }
+    </script>
 </body>
 </html>

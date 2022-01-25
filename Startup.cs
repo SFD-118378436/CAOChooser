@@ -27,6 +27,7 @@ namespace CAOSelect
 
             //Adding support for sessions
             services.AddSession();
+            services.AddMemoryCache();
 
         }
 
