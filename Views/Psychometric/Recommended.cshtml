@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CAOSelect.Models.Career>
+
+@{
+    ViewData["Title"] = "Recommended";
+}
+
+<h1>Recommended</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CareerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InterestArea)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CareerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterestArea)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

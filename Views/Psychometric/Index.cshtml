@@ -1,0 +1,81 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<Question> questions = ViewBag.questions;
+
+}
+
+<script>
+    var ctotal = 0;
+    var etotal = 0;
+    var atotal = 0;
+    var itotal = 0;
+    var rtotal = 0;
+    var stotal = 0;
+
+</script>
+<!--code found at https://codepen.io/blaustern_fotografie/pen/MWyyqdB?editors=1000-->
+<div class="container-fluid">
+
+    <div class="jumbotron">
+        <h3>Interest Test</h3>
+        <p>Select what jobs interest you!</p>
+    </div>
+
+    <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#quiz" role="tab" aria-controls="quiz" aria-selected="true">Quiz</a>
+        </li>
+
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="quiz" role="tabpanel" aria-labelledby="quiz-tab">
+            <!--https://stackoverflow.com/questions/26383431/c-sharp-split-list-into-sublists-based-on-a-value-of-a-certain-property-->
+            <!--Creating sublists for each item-->
+            @foreach (var interest in questions.GroupBy(a => a.InterestArea))
+            {
+                <div class="card border-info mb-4 ">
+                    <div class="d-flex justify-content-between align-items-center card-header bg-info text-white" id="h1">
+                        <span>@interest.First().InterestArea</span>
+                        <button type="button" data-toggle="collapse" data-target="#q1" aria-expanded="false" aria-controls="@interest.First().InterestArea" class="btn btn-outline-light">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="@interest.First().InterestArea" class="collapse show" aria-labelledby="h1">
+                        <div class="card-body">
+
+                            <!--looping through all items in the sub list-->
+                            @foreach (var item in interest)
+                            {
+
+                                <input type="checkbox" id="@interest.First().InterestArea" name="@interest.First().InterestArea"  value="1">
+                                <label for="@interest.First().InterestArea">@item.SourceQuestion</label><br>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <form asp-controller="Psychometric" asp-action="Recommended">
+            <!--Passing values back into C# -->
+            <input type="hidden" id="R" />
+            <input type="hidden" id="I" />
+            <input type="hidden" id="A" />
+            <input type="hidden" id="S" />
+            <input type="hidden" id="E" />
+            <input type="hidden" id="C" />
+
+            <input type="submit" onclick="Update()"/>
+        </form>
+    </div>
+
+    <p style="text-align: center"><a href="https://www.onetcenter.org/tools.html">
+        <img src="https://www.onetcenter.org/image/link/onet-in-it.svg" style="width: 130px; height: 60px; border: none" alt="O*NET in-it"></a></p>
+    <p>This page includes information from the <a href="https://www.onetcenter.org/tools.html">O*NET Career Exploration Tools</a> by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the <a href="/license_tools.html">O*NET Tools Developer License</a>. O*NET&reg; is a trademark of USDOL/ETA. CAOSELECT has modified all or some of this information. USDOL/ETA has not approved, endorsed, or tested these modifications.</p>
+</div>
+

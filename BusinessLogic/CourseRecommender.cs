@@ -49,7 +49,6 @@ namespace CAOSelect.BusinessLogic
                     {
                         differenceBest = TotalDifference;
                         bestcourse = course;
-
                     }
                 }
                 else
@@ -57,7 +56,6 @@ namespace CAOSelect.BusinessLogic
                     //Code to update if value is null
                     differenceBest = TotalDifference;
                     bestcourse = course;
-
                 }
             }
             return bestcourse;
