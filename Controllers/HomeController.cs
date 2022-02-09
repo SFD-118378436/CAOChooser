@@ -140,6 +140,11 @@ namespace CAOSelect.Controllers
             //finding the subject by ID
             CAOSubject course = cmang.getCoursebyID(CourseID);
 
+            //Getting good similar courses
+            List<CAOSubject> best = cmang.getSimilarCourses(course);
+
+            ViewBag.best = best;
+
             return View(course);
         }
 

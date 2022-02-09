@@ -74,10 +74,15 @@ namespace CAOSelect.Controllers
             List<CAOSubject> courses = JsonSerializer.Deserialize<List<CAOSubject>>(HttpContext.Session.GetString("courses") as String);
             //calling the course recommender class
             CourseRecommender crec = new CourseRecommender();
+            CourseManager cman = new CourseManager();
 
             //Getting Subject from course recommender
             CAOSubject rcourse = crec.CourseRecommendation(analytical, problemsolving, creative, interpersonal, courses);
 
+            //Getting good similar courses
+            List<CAOSubject> best = cman.getSimilarCourses(rcourse);
+
+            ViewBag.best = best;
             ViewBag.PerfCourse = rcourse;
 
             return View();

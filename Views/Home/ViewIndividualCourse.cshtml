@@ -42,6 +42,22 @@
         </dd>
     </dl>
 </div>
+
+<div class="container">
+    <h4>Similar Courses</h4>
+    <div class="row">
+    @foreach (var course in ViewBag.best)
+    {
+        <div class="card">
+        <div class="col-md">
+            <a asp-action="ViewIndividualCourse" asp-controller="Home" asp-route-CourseID="@course.CourseID">@course.CourseName</a>
+            <p>@course.ThirdLevelInstitute</p>
+        </div>
+    </div>
+    }
+     </div>
+</div>
+
 <div>
     <a class="btn btn-light" asp-action="ViewCourses">Back to List</a>
 </div>
