@@ -24,7 +24,7 @@ namespace CAOSelect.Controllers
             return View();
         }
 
-        public IActionResult Recommended(int R, int I, int A, int C, int S, int E)
+        public IActionResult Recommended(int R, int I, int A, int S, int E, int C)
         {
 
             //BiggestValue

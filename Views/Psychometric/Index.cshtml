@@ -63,12 +63,12 @@
 
         <form asp-controller="Psychometric" asp-action="Recommended">
             <!--Passing values back into C# -->
-            <input type="hidden" id="R" />
-            <input type="hidden" id="I" />
-            <input type="hidden" id="A" />
-            <input type="hidden" id="S" />
-            <input type="hidden" id="E" />
-            <input type="hidden" id="C" />
+            <input type="hidden" id="R" name="R" />
+            <input type="hidden" id="I" name="I" />
+            <input type="hidden" id="A" name="A" />
+            <input type="hidden" id="S" name="S"/>
+            <input type="hidden" id="E" name="E" />
+            <input type="hidden" id="C" name="C"/>
 
             <input type="submit" onclick="Update()"/>
         </form>
