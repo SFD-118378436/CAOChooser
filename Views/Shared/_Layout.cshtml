@@ -1,17 +1,22 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    @using Microsoft.AspNetCore.Http;
+    @using System.Text.Json;
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Super CAO Select</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    
 </head>
 <body>
+    @{ String user = Context.Session.GetString("admin"); }
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/SuperCAOSelectLogo.png" alt="Website logo"/></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/SuperCAOSelectLogo.png" alt="Website logo" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,10 +29,26 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="/Recommendation">Find your Recommended Course</a>
                         </li>
-                        <li class ="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link text-dark" href="/Psychometric">Career Interest</a>
                         </li>
-</ul>
+
+                        @if (user == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-black" href="/Admin/Register">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-black" href="/Admin">Login</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-black" href="/Admin/ViewCourses">Administor Courses</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>

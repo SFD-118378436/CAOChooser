@@ -26,9 +26,16 @@ namespace CAOSelect.Models
         public String ThirdLevelInstitute { get; set; }
 
         //Code used to gather ratios
+        [Display(Name = "Creative Ratio")]
         public int creative { get; set; }
+
+        [Display(Name = "Problem Solving Ratio")]
         public int problemsolving { get; set; }
+
+        [Display(Name = "Analytical Ratio")]
         public int analytical { get; set; }
+
+        [Display(Name = "Interpersonal Ratio")]
         public int interpersonal { get; set; }
     }
 }

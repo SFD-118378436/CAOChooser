@@ -1,0 +1,70 @@
+﻿@model CAOSelect.Models.CAOSubject
+
+@{
+    ViewData["Title"] = "Edit Course";
+}
+
+<h1>Edit Course</h1>
+
+<h4>CAOSubject</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditCourse">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CourseID" class="control-label"></label>
+                <input asp-for="CourseID" class="form-control" />
+                <span asp-validation-for="CourseID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseName" class="control-label"></label>
+                <input asp-for="CourseName" class="form-control" />
+                <span asp-validation-for="CourseName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseDescription" class="control-label"></label>
+                <input asp-for="CourseDescription" class="form-control" />
+                <span asp-validation-for="CourseDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Level" class="control-label"></label>
+                <input asp-for="Level" class="form-control" />
+                <span asp-validation-for="Level" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdLevelInstitute" class="control-label"></label>
+                <input asp-for="ThirdLevelInstitute" class="form-control" />
+                <span asp-validation-for="ThirdLevelInstitute" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="creative" class="control-label"></label>
+                <input asp-for="creative" class="form-control" />
+                <span asp-validation-for="creative" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="problemsolving" class="control-label"></label>
+                <input asp-for="problemsolving" class="form-control" />
+                <span asp-validation-for="problemsolving" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="analytical" class="control-label"></label>
+                <input asp-for="analytical" class="form-control" />
+                <span asp-validation-for="analytical" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="interpersonal" class="control-label"></label>
+                <input asp-for="interpersonal" class="form-control" />
+                <span asp-validation-for="interpersonal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

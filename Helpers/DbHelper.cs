@@ -11,7 +11,6 @@ namespace CAOSelect.Helpers
         public static SqlConnection GetConnection()
         {
             return new SqlConnection(@"Server=tcp:fypdatacao.database.windows.net,1433;Initial Catalog=CAOCHECK;Persist Security Info=False;User ID=sduggan;Password=Knockboy@2;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-
         }
     }
 }

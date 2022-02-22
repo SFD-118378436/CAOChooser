@@ -55,6 +55,7 @@ namespace CAOSelect.Controllers
 
             int lvl = 0;
 
+
             //parsing string to int
             if (level != null) {
                 lvl = Int32.Parse(level);
@@ -67,8 +68,8 @@ namespace CAOSelect.Controllers
 
                 foreach (var c in courses)
                 {
-                    //Seeing if course contains the searchString
-                    if (c.CourseName.Contains(searchString))
+                    //Seeing if course contains the searchString changing both to upper to get rid of case sensitivity
+                    if (c.CourseName.ToUpper().Contains(searchString.ToUpper()))
                     {
                         searchSubjects.Add(c);
                     }

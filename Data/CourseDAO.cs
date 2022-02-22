@@ -34,6 +34,41 @@ namespace CAOSelect.Data
             }
         }
 
+        public void DeleteCourse(String CourseID)
+        {
+            using (var db = DbHelper.GetConnection())
+            {
+                //creating a list 
+                String query = "DELETE FROM CAOSUBJECT WHERE COURSEID='" + CourseID + "';";
+                 db.Query(query);
+            }
+        }
+
+        public void AddCourse(CAOSubject course)
+        {
+            using(var db = DbHelper.GetConnection()){
+
+                String query = "INSERT INTO CAOSUBJECT (COURSEID,COURSENAME,COURSEDESCRIPTION,LEVEL,ThirdLevelInstitute,creative,problemsolving,analytical,interpersonal) " +
+                    "VALUES('" + course.CourseID + "','" + course.CourseName + "','" + course.CourseDescription + "'," + course.Level + ",'" + course.ThirdLevelInstitute + "',"
+                    + course.creative + "," + course.problemsolving + "," + course.analytical + "," + course.interpersonal + ");";
+                db.Query(query);
+            }
+        }
+
+        public void EditCourse(String id, CAOSubject course)
+        {
+            using (var db = DbHelper.GetConnection())
+            {
+
+                String q2 = "UPDATE CAOSUBJECT SET COURSEID='" + course.CourseID + "', COURSENAME='" + course.CourseName + "', COURSEDESCRIPTION='" + course.CourseDescription +
+                     "',LEVEL=" + course.Level + ",ThirdLevelInstitute='" + course.ThirdLevelInstitute + "',creative=" + course.creative + ",problemsolving=" + course.problemsolving +
+                     ",analytical=" + course.analytical + ",interpersonal=" + course.interpersonal + "WHERE COURSEID='" + id + "';";
+
+                db.Query(q2);
+            }
+        }
+
+
         //Creating a method to gather all courses within a college
         public List<CAOSubject> getCoursesByCollege(String tli)
         {

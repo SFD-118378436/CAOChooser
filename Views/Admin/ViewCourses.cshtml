@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CAOSelect.Models.CAOSubject>
+
+@{
+    ViewData["Title"] = "ViewCourses";
+}
+
+<h1>View Courses</h1>
+
+<p>
+    <a asp-action="CreateCourse">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThirdLevelInstitute)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.creative)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.problemsolving)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.analytical)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.interpersonal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThirdLevelInstitute)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.creative)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.problemsolving)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.analytical)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.interpersonal)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditCourse", new {  id=item.CourseID  }) |
+                @Html.ActionLink("Delete", "DeleteCourse", new { id = item.CourseID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
