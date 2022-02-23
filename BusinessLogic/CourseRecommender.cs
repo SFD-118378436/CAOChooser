@@ -13,12 +13,12 @@ namespace CAOSelect.BusinessLogic
             //adding up all values of the values of the items
             int totalvalue = a + p + c + inter;
 
-
+            //https://stackoverflow.com/questions/661028/how-can-i-divide-two-integers-to-get-a-double
             //getting the proportional make up
-            float analyticalproportion = a / totalvalue;
-            float problemproportion = p / totalvalue;
-            float creativeproportion = c / totalvalue;
-            float interproportion = inter / totalvalue;
+            float analyticalproportion = (float)a / (float)totalvalue;
+            float problemproportion = (float)p / (float)totalvalue;
+            float creativeproportion = (float)c / (float)totalvalue;
+            float interproportion = (float)inter / (float)totalvalue;
 
             //creating a course 
             CAOSubject bestcourse = new CAOSubject();
@@ -30,10 +30,10 @@ namespace CAOSelect.BusinessLogic
             foreach (var course in courses)
             {
                 //getting the proportion of each course
-                float aprop = course.analytical / 100;
-                float pprop = course.problemsolving / 100;
-                float cprop = course.creative / 100;
-                float iprop = course.interpersonal / 100;
+                float aprop = (float)course.analytical / (float)100;
+                float pprop = (float)course.problemsolving / (float)100;
+                float cprop = (float)course.creative / (float)100;
+                float iprop = (float)course.interpersonal / (float)100;
 
                 //finding the absolute differences between values
                 float differenceAn = Math.Abs(analyticalproportion - aprop);

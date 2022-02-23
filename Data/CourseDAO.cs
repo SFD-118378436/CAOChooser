@@ -90,6 +90,36 @@ namespace CAOSelect.Data
             return speccourses;
 
         }
+
+
+        public void giveRandomValues()
+        {
+            List<CAOSubject> courses = getCourse();
+
+            foreach(CAOSubject c in courses)
+            {
+                string CourseID = c.CourseID;
+
+                //Creating a random object
+                Random rnd = new Random();
+
+                int total = 100;
+                //Reducing the value each time
+                c.creative = rnd.Next(0, total);
+                total = total - c.creative;
+
+                c.analytical = rnd.Next(0, total);
+                total = total - c.analytical;
+
+                c.problemsolving = rnd.Next(0, total);
+                total = total - c.problemsolving;
+
+                c.interpersonal = rnd.Next(0, total);
+                total = total - c.interpersonal;
+
+                EditCourse(CourseID, c);
+            }
+        }
     }
 }
 

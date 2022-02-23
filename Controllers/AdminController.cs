@@ -37,6 +37,7 @@ namespace CAOSelect.Controllers
 
             byte[] salt = new byte[128 / 8];
 
+            //https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/password-hashing?view=aspnetcore-3.1
             using (var rngCsp = new RNGCryptoServiceProvider())
             {
                 rngCsp.GetNonZeroBytes(salt);

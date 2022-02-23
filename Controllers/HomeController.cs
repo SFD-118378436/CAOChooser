@@ -22,6 +22,7 @@ namespace CAOSelect.Controllers
 
         public IActionResult Index()
         {
+            CourseDAO cdata = new CourseDAO();
             return View();
         }
 
