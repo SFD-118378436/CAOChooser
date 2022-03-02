@@ -38,10 +38,10 @@ namespace CAOSelect.Controllers
             byte[] salt = new byte[128 / 8];
 
             //https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/password-hashing?view=aspnetcore-3.1
-            using (var rngCsp = new RNGCryptoServiceProvider())
-            {
-                rngCsp.GetNonZeroBytes(salt);
-            }
+           // using (var rngCsp = new RNGCryptoServiceProvider())
+            //{
+             //   rngCsp.GetNonZeroBytes(salt);
+           // }
 
             string hash = alogin.HashedPassword(Password, salt);
 
@@ -90,7 +90,7 @@ namespace CAOSelect.Controllers
 
                 //code found at http://www.binaryintellect.net/articles/8e64d05b-ab2e-45f6-b7f5-b8a90168915e.aspx
                 //also uses https://ucc.instructure.com/courses/39791/files/4107180?module_item_id=1199744
-                
+
                 HttpContext.Session.SetString("admin", JsonSerializer.Serialize(loginAdmin));
 
                 return RedirectToAction("ViewCourses");
@@ -99,7 +99,7 @@ namespace CAOSelect.Controllers
             {
                 return RedirectToAction("Index");
             }
-            
+
         }
 
 
@@ -124,7 +124,7 @@ namespace CAOSelect.Controllers
             {
                 //Accessing courseData
                 CourseDAO cdata = new CourseDAO();
-                
+
                 //Adding course to the the Db
                 cdata.AddCourse(subject);
                 //Returning to ViewCourses List
@@ -135,6 +135,17 @@ namespace CAOSelect.Controllers
                 return View();
             }
         }
+
+
+        //[httppost]
+        //public iactionresult createrequiredsubject([bind] requiredsubject rsubject)
+        //{
+        //    requiredsubjectdao rdata = new requiredsubjectdao();
+        //    rdata.
+
+        //}
+
+
 
         // GET: AdministrationController/Edit/5
         public ActionResult EditCourse(String id)
@@ -173,7 +184,12 @@ namespace CAOSelect.Controllers
         // GET: AdministrationController/Delete/5
         public ActionResult DeleteCourse(String id)
         {
-            return View();
+            //calling a coursemanager to find individual course
+            CourseManager cmang = new CourseManager();
+
+            //finding the subject by ID
+            CAOSubject course = cmang.getCoursebyID(id);
+            return View(course);
         }
 
         // POST: AdministrationController/Delete/5
