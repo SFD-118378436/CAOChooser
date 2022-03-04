@@ -5,6 +5,7 @@
 }
 
 
+
 <form asp-controller="Home" asp-action="Search" method="post">
     <table>
         <tr>
@@ -16,7 +17,7 @@
             <td>
                 <div class="container">
                     <!--Passing in the values needed for search query-->
-                    <input name="searchString" type="search" />
+                    <input name="searchString" id="txtsearch" type="search" class="form-control rounded" placeholder="Search" />
                     <input type="hidden" name="importSubjects" value="Viewbag.courses" />
                     <input type="hidden" name="action" value="search" />
                 </div>
@@ -24,7 +25,7 @@
             <td>
                 <div class="container">
                     <!--https://stackoverflow.com/questions/7231157/how-to-submit-form-on-change-of-dropdown-list -->
-                    <select class="dropdown-header" id="tlidrop" name="college">
+                    <select class="custom-select" id="tlidrop" name="college">
 
                         <option value="none" selected disabled hidden>
                             Select an Option
@@ -39,7 +40,7 @@
             </td>
             <td>
                 <div class="container">
-                    <select class=" dropdown-header" id="lvldrop" name="level">
+                    <select class="custom-select" id="lvldrop" name="level">
                         <option value="none" selected disabled hidden>
                             Select an Option
                         </option>
@@ -50,9 +51,9 @@
                     </select>
                 </div>
             </td>
-            <td>
-                <input type="submit" name="submit" />
-            </td>
+           <!-- <td>
+                <input type="submit" class="btn btn-primary" name="submit" />
+            </td> -->
         </tr>
     </table>
 
@@ -63,14 +64,14 @@
 </div>
 
 <div class="container">
-    <table class="table">
+    <table class="table" id="tblcourse">
         <tr>
             <td><b>Course ID</b></td>
             <td><b>Course Name</b></td>
             <td><b>Level</b></td>
             <td><b>Third Level Institute</b></td>
         </tr>
-        @foreach (var item in ViewBag.courses)
+        @foreach (var item in Model)
         {
             <tr>
                 <td><a asp-action="ViewIndividualCourse" asp-controller="Home" asp-route-CourseID="@item.CourseID">@item.CourseID</a></td>
@@ -82,3 +83,21 @@
     </table>
 
 </div>
+
+<script>
+
+    $("#txtsearch").keyup(function () {
+        LiveSearch();
+    });
+
+    //https://api.jquery.com/change/
+    //on dropdown change
+    $("#lvldrop").click(function () {
+        LiveSearch();
+    });
+
+    $("#tlidrop").click(function () {
+        LiveSearch();
+    });
+
+</script>

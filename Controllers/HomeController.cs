@@ -37,7 +37,102 @@ namespace CAOSelect.Controllers
             //Adding colleges and courses to viewbag
             ViewBag.colleges = colleges;
             ViewBag.courses = courses;
-            return View();
+            return View(courses);
+        }
+
+
+        public JsonResult GetSearchingData(string searchString, string college, string level)
+        {
+            //https://www.aspsnippets.com/Articles/ASPNet-MVC-Implement-Search-functionality-using-jQuery-AJAX.aspx
+            CourseDAO courseData = new CourseDAO();
+            List<CAOSubject> courses = courseData.getCourse();
+
+            List<CAOSubject> subjects = new List<CAOSubject>();
+            List<String> colleges = courseData.getThirdLevelInstitute();
+
+            //Lists of items from different filters
+            List<CAOSubject> searchSubjects = new List<CAOSubject>();
+            List<CAOSubject> levelSubjects = new List<CAOSubject>();
+            List<CAOSubject> collegesubjects = new List<CAOSubject>();
+
+            int lvl = 0;
+
+
+            //parsing string to int
+            if (level != null)
+            {
+                lvl = Int32.Parse(level);
+            }
+
+
+            //If the action is search
+            if (searchString != null)
+            {
+
+                foreach (var c in courses)
+                {
+                    //Seeing if course contains the searchString changing both to upper to get rid of case sensitivity
+                    if (c.CourseName.ToUpper().Contains(searchString.ToUpper()))
+                    {
+                        searchSubjects.Add(c);
+                    }
+                }
+
+            }
+            else
+            {
+                searchSubjects = courses;
+            }
+
+            //What to do if action is college
+
+            if (college != null)
+            {
+                //Checking to see if subject list has any items in it
+
+                foreach (var c in courses)
+                {
+                    //Checking to see if courses college equal to the searchstring value
+                    if (c.ThirdLevelInstitute.Equals(college))
+                    {
+                        collegesubjects.Add(c);
+                    }
+                }
+            }
+            else
+            {
+                collegesubjects = courses;
+            }
+
+
+            if (level != null)
+            {
+
+                foreach (var c in courses)
+                {
+                    //Checking to see if courses college equal to teh searchstring value
+                    if (c.Level == lvl)
+                    {
+                        levelSubjects.Add(c);
+                    }
+                }
+            }
+            else
+            {
+                levelSubjects = courses;
+            }
+
+            //Checking all subjects
+            //https://social.msdn.microsoft.com/Forums/en-US/4b3fc81f-8e8d-478f-8fa5-2bb2c18fdf3d/compare-list-of-string-c?forum=aspcsharp
+            subjects = searchSubjects.Intersect(collegesubjects).Intersect(levelSubjects).ToList();
+
+            //Setting Viewbags
+            ViewBag.colleges = colleges;
+            ViewBag.subjects = subjects;
+            ViewBag.search = searchString;
+
+            return Json(subjects);
+
         }
 
         public IActionResult Search(String searchString, string college, string level)

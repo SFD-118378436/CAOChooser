@@ -9,12 +9,26 @@
     <title>@ViewData["Title"] - Super CAO Select</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    
+    <!-- fevicon -->
+    <link rel="icon" href="~/img/fevicon.png" type="image/gif" />
+    <!-- style css -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="~/css/jquery.mCustomScrollbar.min.css">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+
+    <!--JQuery-->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
     @{ String user = Context.Session.GetString("admin"); }
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/SuperCAOSelectLogo.png" alt="Website logo" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -35,11 +49,16 @@
 
                         @if (user == null)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-black" href="/Admin/Register">Register</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-black" href="/Admin">Login</a>
+
+                            <li class="nav-item dropdown text-black">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Log-In/Sign-Up
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="/Admin/Register">Register</a>
+                                    <a class="dropdown-item" href="/Admin">Login</a>
+
+                                </div>
                             </li>
                         }
                         else
@@ -52,6 +71,7 @@
                 </div>
             </div>
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -59,14 +79,22 @@
         </main>
     </div>
 
+    <!--  footer -->
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - CAOSelect - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <!-- end footer -->
+    
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/jquery-3.0.0.min.js"></script>
+    <script src="~/js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
-</html>
+    </html>

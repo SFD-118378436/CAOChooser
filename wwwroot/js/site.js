@@ -98,3 +98,39 @@ function Update() {
     document.getElementById("E").value = etotal;
     document.getElementById("C").value = ctotal;
 }
+
+
+//https://dev.to/jamiemcmanus/creating-a-live-search-with-ajax-net-9od
+//https://www.aspsnippets.com/Articles/ASPNet-MVC-Implement-Search-functionality-using-jQuery-AJAX.aspx
+function LiveSearch() {
+
+    //Get the input value
+    let value = $.trim($("#txtsearch").val());
+    let college = $.trim($("#tlidrop").val());
+    let level = $.trim($("#lvldrop").val());
+
+
+    $.ajax({
+        type: "Get",
+        url: "/Home/GetSearchingData?searchString="+ value + "&college=" + college + "&level=" + level,
+        
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (courses) {
+            var table = $("#tblcourse");
+            table.find("tr:not(:first)").remove();
+            $.each(courses, function (i, course) {
+                var table = $("#tblcourse");
+                var row = table[0].insertRow(-1);
+                $(row).append("<td />");
+                $(row).find("td").eq(0).html(course.courseID);
+                $(row).append("<td />");
+                $(row).find("td").eq(1).html(course.courseName);
+                $(row).append("<td />");
+                $(row).find("td").eq(2).html(course.level);
+                $(row).append("<td />");
+                $(row).find("td").eq(3).html(course.thirdLevelInstitute);
+            });
+        }
+    });
+}
