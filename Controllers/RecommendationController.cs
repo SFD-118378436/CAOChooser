@@ -31,13 +31,6 @@ namespace CAOSelect.Controllers
             return View();
         }
 
-        public IActionResult AddSubjects()
-        {
-            subjects = subjectData.getSubjects();
-            //Adding subjects to view
-            ViewBag.subjects = subjects;
-            return View();
-        }
 
         public IActionResult LCSubjects(string numSubjects)
         {
@@ -56,17 +49,6 @@ namespace CAOSelect.Controllers
 
         public IActionResult YourRecommendedCourse(int creative, int problemsolving, int analytical, int interpersonal)
         {
-            //Getting rid of negative figures
-            if(creative < 0) {creative = 0;} 
-            if(problemsolving < 0) { problemsolving = 0; }
-            if (analytical < 0) { analytical = 0; }
-            if (interpersonal < 0) { interpersonal = 0; }
-
-            //Creating a prevention method to ensure that we do not get a dividde by zero error
-            if (creative <= 0 && problemsolving <= 0 && analytical <=0 && interpersonal <= 0)
-            {
-                creative = 1;
-            }
 
             //getting the list of random courses
             //https://bartwullems.blogspot.com/2020/03/aspnet-coreusing-tempdata-results-in.html

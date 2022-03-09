@@ -1,6 +1,7 @@
 ﻿using CAOSelect.BusinessLogic;
 using CAOSelect.Data;
 using CAOSelect.Models;
+using CAOSelect.ViewModels;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -112,6 +113,11 @@ namespace CAOSelect.Controllers
         // GET: AdministrationController/Create
         public ActionResult CreateCourse()
         {
+            //https://bartwullems.blogspot.com/2020/03/aspnet-coreusing-tempdata-results-in.html
+            //https://ucc.instructure.com/courses/39791/files/4107180?module_item_id=1199744
+            Admin loggedadmin = JsonSerializer.Deserialize<Admin>(HttpContext.Session.GetString("admin") as String);
+
+            ViewBag.tli = loggedadmin.ThirdLevelInstitution;
             return View();
         }
 
@@ -136,27 +142,76 @@ namespace CAOSelect.Controllers
             }
         }
 
-
-        //[httppost]
-        //public iactionresult createrequiredsubject([bind] requiredsubject rsubject)
-        //{
-        //    requiredsubjectdao rdata = new requiredsubjectdao();
-        //    rdata.
-
-        //}
-
-
-
         // GET: AdministrationController/Edit/5
         public ActionResult EditCourse(String id)
         {
 
             //calling a coursemanager to find individual course
             CourseManager cmang = new CourseManager();
+            
 
             //finding the subject by ID
             CAOSubject course = cmang.getCoursebyID(id);
+            List<RequiredSubject> reqSubjects = cmang.GetRequiredSubjectsbyId(id);
+
+            ViewBag.RequiredSub = reqSubjects;  
+
             return View(course);
+        }
+
+        public IActionResult UpdateReqSubject(string courseID)
+        {
+            //calling course manager
+            CourseManager cmang = new CourseManager();
+            SubjectDAO sdata = new SubjectDAO();
+            //creating a list of subjects
+            List<RequiredSubject> reqSubjects = cmang.GetRequiredSubjectsbyId(courseID);
+
+            ViewBag.subjects = sdata.getSubjects();
+            ViewBag.Courseid = courseID;
+
+            return View(reqSubjects);
+        }
+
+
+        public IActionResult DeleteReq(string courseID, int subjectID)
+        {
+            RequiredSubjectDAO rdata = new RequiredSubjectDAO();
+
+            rdata.Delete(courseID, subjectID);
+
+            //calling course manager and getting updated list
+            CourseManager cmang = new CourseManager();
+            List<RequiredSubject> reqSubjects = cmang.GetRequiredSubjectsbyId(courseID);
+
+            return RedirectToAction(nameof(UpdateReqSubject), new { courseID = courseID });
+
+        }
+
+        public IActionResult AddReqSubject(String CourseID, String SubjectName, String Level)
+        {
+            //Calling Managers
+            CourseManager cmang = new CourseManager();
+            SubjectManager smang = new SubjectManager();
+            RequiredSubjectDAO rdata = new RequiredSubjectDAO();
+
+            //Finding the specific course and subject
+            CAOSubject course = cmang.getCoursebyID(CourseID);
+            LCSubject subject = smang.getSubjectbyName(SubjectName);
+            //creating a required subject
+            RequiredSubject rsub = new RequiredSubject();
+            //adding values to required subject object
+            rsub.course = course;
+            rsub.subject = subject;
+            rsub.Level = Level;
+
+            rdata.AddSubject(rsub);
+
+            //Creating a list
+            List<RequiredSubject> reqSubjects = cmang.GetRequiredSubjectsbyId(CourseID);
+
+            return RedirectToAction(nameof(UpdateReqSubject),new { courseID = CourseID });
+
         }
 
         // POST: AdministrationController/Edit/5
@@ -166,6 +221,7 @@ namespace CAOSelect.Controllers
         {
             try
             {
+
                 CourseDAO cdata = new CourseDAO();
 
                 cdata.EditCourse(CourseID,subject);
@@ -211,6 +267,8 @@ namespace CAOSelect.Controllers
                 return View();
             }
         }
+
+
 
     }
 }

@@ -135,97 +135,98 @@ namespace CAOSelect.Controllers
 
         }
 
-        public IActionResult Search(String searchString, string college, string level)
-        {
-            //Getting all course data from Database
-            CourseDAO courseData = new CourseDAO();
-            List<CAOSubject> courses = courseData.getCourse();
+        //public IActionResult Search(String searchString, string college, string level)
+        //{
+        //    Getting all course data from Database
+        //    CourseDAO courseData = new CourseDAO();
+        //    List<CAOSubject> courses = courseData.getCourse();
 
-            List<CAOSubject> subjects = new List<CAOSubject>();
-            List<String> colleges = courseData.getThirdLevelInstitute();
+        //    List<CAOSubject> subjects = new List<CAOSubject>();
+        //    List<String> colleges = courseData.getThirdLevelInstitute();
 
-            //Lists of items from different filters
-            List<CAOSubject> searchSubjects = new List<CAOSubject>();
-            List<CAOSubject> levelSubjects = new List<CAOSubject>();
-            List<CAOSubject> collegesubjects = new List<CAOSubject>();
+        //    Lists of items from different filters
+        //    List<CAOSubject> searchSubjects = new List<CAOSubject>();
+        //    List<CAOSubject> levelSubjects = new List<CAOSubject>();
+        //    List<CAOSubject> collegesubjects = new List<CAOSubject>();
 
-            int lvl = 0;
-
-
-            //parsing string to int
-            if (level != null) {
-                lvl = Int32.Parse(level);
-            }
+        //    int lvl = 0;
 
 
-            //If the action is search
-            if (searchString != null)
-            {
-
-                foreach (var c in courses)
-                {
-                    //Seeing if course contains the searchString changing both to upper to get rid of case sensitivity
-                    if (c.CourseName.ToUpper().Contains(searchString.ToUpper()))
-                    {
-                        searchSubjects.Add(c);
-                    }
-                }
-
-            }
-            else
-            {
-                searchSubjects = courses;
-            }
-
-            //What to do if action is college
-
-            if (college != null)
-            {
-                //Checking to see if subject list has any items in it
-
-                foreach (var c in courses)
-                {
-                    //Checking to see if courses college equal to the searchstring value
-                    if (c.ThirdLevelInstitute.Equals(college))
-                    {
-                        collegesubjects.Add(c);
-                    }
-                }
-            }
-            else
-            {
-                collegesubjects = courses;
-            }
+        //    parsing string to int
+        //    if (level != null)
+        //    {
+        //        lvl = Int32.Parse(level);
+        //    }
 
 
-            if (level != null)
-            {
+        //    If the action is search
+        //    if (searchString != null)
+        //    {
 
-                foreach (var c in courses)
-                {
-                    //Checking to see if courses college equal to teh searchstring value
-                    if (c.Level == lvl)
-                    {
-                        levelSubjects.Add(c);
-                    }
-                }
-            }
-            else
-            {
-                levelSubjects = courses;
-            }
+        //        foreach (var c in courses)
+        //        {
+        //            Seeing if course contains the searchString changing both to upper to get rid of case sensitivity
+        //            if (c.CourseName.ToUpper().Contains(searchString.ToUpper()))
+        //            {
+        //                searchSubjects.Add(c);
+        //            }
+        //        }
 
-            //Checking all subjects
-            //https://social.msdn.microsoft.com/Forums/en-US/4b3fc81f-8e8d-478f-8fa5-2bb2c18fdf3d/compare-list-of-string-c?forum=aspcsharp
-            subjects = searchSubjects.Intersect(collegesubjects).Intersect(levelSubjects).ToList();
+        //    }
+        //    else
+        //    {
+        //        searchSubjects = courses;
+        //    }
+
+        //    What to do if action is college
+
+        //    if (college != null)
+        //            {
+        //                Checking to see if subject list has any items in it
+
+        //        foreach (var c in courses)
+        //                {
+        //                    Checking to see if courses college equal to the searchstring value
+        //            if (c.ThirdLevelInstitute.Equals(college))
+        //                    {
+        //                        collegesubjects.Add(c);
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+        //                collegesubjects = courses;
+        //            }
 
 
-            //Adding subject list and search item to string
-            ViewBag.colleges = colleges;
-            ViewBag.subjects = subjects;
-            ViewBag.search = searchString;
-            return View();
-        }
+        //    if (level != null)
+        //    {
+
+        //        foreach (var c in courses)
+        //        {
+        //            Checking to see if courses college equal to teh searchstring value
+        //            if (c.Level == lvl)
+        //            {
+        //                levelSubjects.Add(c);
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        levelSubjects = courses;
+        //    }
+
+        //    Checking all subjects
+        //    https://social.msdn.microsoft.com/Forums/en-US/4b3fc81f-8e8d-478f-8fa5-2bb2c18fdf3d/compare-list-of-string-c?forum=aspcsharp
+        //    subjects = searchSubjects.Intersect(collegesubjects).Intersect(levelSubjects).ToList();
+
+
+        //    Adding subject list and search item to string
+        //    ViewBag.colleges = colleges;
+        //    ViewBag.subjects = subjects;
+        //    ViewBag.search = searchString;
+        //    return View();
+        //}
 
         //Using an individual course
         [HttpGet]
@@ -240,6 +241,10 @@ namespace CAOSelect.Controllers
             //Getting good similar courses
             List<CAOSubject> best = cmang.getSimilarCourses(course);
 
+
+            List<RequiredSubject> rlist = cmang.GetRequiredSubjectsbyId(CourseID);
+
+            ViewBag.RequiredSubjects = rlist;
             ViewBag.best = best;
 
             return View(course);

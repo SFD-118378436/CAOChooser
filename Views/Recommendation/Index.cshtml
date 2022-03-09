@@ -6,13 +6,65 @@
 @{
     ViewData["Title"] = "Recommendation";
 }
+<!-- style css -->
+<link rel="stylesheet" href="css/style.css">
+<!-- Responsive-->
+<link rel="stylesheet" href="css/responsive.css">
+<!-- Scrollbar Custom CSS -->
+<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
 
-<div class="container">
-    <h3>Find the correct course for you</h3>
-    <p>Welcome to our software to try caluclate the best college course for you based on your 
-    subjects, choices and personality. We will give you a unique view on the correct course for you!
-    </p>
 
-    <a href="/Recommendation/AddSubjects" class="btn btn-success">Get Started</a>
+<!-- MAKE -->
+<div class="make">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2>Choose your course <strong class="yellow">the best way</strong></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                <div class="make_text">
+                    <p>
+                        Super CAO Select offers you the best and fastest way to find the correct college course for you!
+                    </p>
 
+                    <div class="container">
+                        <btn id="myBtn" class=" btn btn-success" data-toggle="modal" data-target="#myModal">Get Started</btn>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                <div class="make_img">
+                    <figure><img src="img/make_img.jpg"></figure>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- end MAKE -->
+<!-- learn -->
+
+    <div id="myModal" tabindex="-1" class="modal">
+        <div class="modal-content">
+            <form asp-action="LCSubjects" asp-controller="Recommendation" method="post">
+                <div class="modal-header">
+                    <h5>Number of Subjects</h5>
+                </div>
+                <div class="modal-body">
+
+                    <label>How many Leaving Certificate subjects are you undertaking?</label>
+                    <!--Create a textbox to take in numbers that are greater than 6 and less than 14-->
+                    <input type="number" name="numSubjects" min="6" max="14" required />
+                </div>
+                <div class="modal-footer">
+                    <!--Submitting to form-->
+                    <input class="btn btn-success" type="submit" />
+                </div>
+                </form>
+        </div>
+    </div>
+
+<!-- end learn -->

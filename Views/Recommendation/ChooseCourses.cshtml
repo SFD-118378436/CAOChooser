@@ -98,6 +98,10 @@
             margin-bottom: 0.75rem;
         }
 
+        .mydiv {
+            overflow: hidden;
+        }
+
         .stackedcards-overlay.left,
         .stackedcards-overlay.right,
         .stackedcards-overlay.top {
@@ -211,6 +215,7 @@
         /* elements on stacked cards */
         .card-item {
             background: #FFFFFF;
+            overflow: hidden;
         }
     </style>
     <script src="~/js/site.js"></script>
@@ -752,7 +757,8 @@
                                 elZindex--;
                             }
                         }
-
+                        //calling the submit form button
+                        submitForm();
                     });
 
                 };
@@ -863,6 +869,14 @@
 
                 };
 
+                //Submit form automatically
+                function submitForm() {
+                    if (currentPosition >= maxElements) {
+                        valueAssign();
+                        document.getElementById('myForm').submit();
+                    }
+                };
+
                 function gestureEnd(evt) {
 
                     if (!touchingElement) {
@@ -914,7 +928,7 @@
                 var buttonLeft = document.querySelector('.left-action');
                     var buttonRight = document.querySelector('.right-action');
 
-                    buttonLeft.addEventListener('click', onActionLeft, false);
+                buttonLeft.addEventListener('click', onActionLeft, false);
                 buttonRight.addEventListener('click', onActionRight, false);
 
                 positionCurrent = currentPosition;
@@ -957,22 +971,14 @@
 
     <div class="container-fluid">
         <div class=" mt-2 col-md-12 text-center">
-            <form asp-action="YourRecommendedCourse" asp-controller="Recommendation" onsubmit="valueAssign()">
+            <form asp-action="YourRecommendedCourse" asp-controller="Recommendation" id="myForm" onsubmit="valueAssign()">
                 <input type="hidden" name="creative" id="txtCreative" />
                 <input type="hidden" name="problemsolving" id="txtProblemSolving" />
                 <input type="hidden" name="analytical" id="txtAnalytical" />
                 <input type="hidden" name="interpersonal" id="txtInterpersonal" />
-                <input type="submit" class="btn btn-success" id="btnSubmit" />
+                <!--<input type="submit" class="btn btn-success" id="btnSubmit" /> -->
             </form>
         </div>
     </div>
-
-    <script>
-        if (postionCurrent < 20) {
-            document.getElementById("btnSubmit").disabled = true;
-        } else {
-            document.getElementById("btnSubmit").disabled = false;
-        }
-    </script>
 </body>
 </html>

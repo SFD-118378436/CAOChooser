@@ -10,6 +10,30 @@ namespace CAOSelect.BusinessLogic
     {
         public CAOSubject CourseRecommendation(int a, int p, int c, int inter, List<CAOSubject> courses)
         {
+            //declaring variable to be used in loop
+            int absoluteworst = 0;
+
+            //finding the worst values
+            int[] numbers = new int[] { a, p, c, inter };
+
+            foreach(var n in numbers)
+            {
+                if(n < 0)
+                {
+                    int differenceworst = numbers.Min();
+
+                     absoluteworst = Math.Abs(differenceworst);
+                  
+                }
+            }
+
+
+            //adding absolute worst to each
+            p += absoluteworst;
+            a += absoluteworst;
+            c += absoluteworst;
+            inter += absoluteworst;
+
             //adding up all values of the values of the items
             int totalvalue = a + p + c + inter;
 

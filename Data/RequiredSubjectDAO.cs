@@ -54,7 +54,31 @@ namespace CAOSelect.Data
 
         }
         public List<ReqSubjectforDAO> EditableItems { get; set; }
+
+        public void Delete(String CourseID, int subjectID)
+        {
+
+            using (var db = DbHelper.GetConnection())
+            {
+                //creating a list 
+                 db.Query("DELETE FROM ReqSubjects WHERE COURSEID = '" + CourseID + "' AND SUBJECTID="+ subjectID + ";");
+            }
+        }
+
+        public void AddSubject(RequiredSubject subject)
+        {
+            using (var db = DbHelper.GetConnection())
+            {
+
+                String query = "INSERT INTO ReqSubjects (COURSEID,SUBJECTID,SubjectLevel) " +
+                    "VALUES('" + subject.course.CourseID + "'," + subject.subject.SubjectID + ",'" + subject.Level +  "');";
+                db.Query(query);
+            }
+        }
+
     }
+
+
 
     public class ReqSubjectforDAO
     {

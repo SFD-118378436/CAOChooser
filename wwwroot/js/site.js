@@ -102,6 +102,7 @@ function Update() {
 
 //https://dev.to/jamiemcmanus/creating-a-live-search-with-ajax-net-9od
 //https://www.aspsnippets.com/Articles/ASPNet-MVC-Implement-Search-functionality-using-jQuery-AJAX.aspx
+//Search bar function dynamically ajax 
 function LiveSearch() {
 
     //Get the input value
@@ -122,8 +123,11 @@ function LiveSearch() {
             $.each(courses, function (i, course) {
                 var table = $("#tblcourse");
                 var row = table[0].insertRow(-1);
+                var link = "<a href='/Home/ViewIndividualCourse?CourseID=" + course.courseID +"'>" + course.courseID + "</a>"
+
+
                 $(row).append("<td />");
-                $(row).find("td").eq(0).html(course.courseID);
+                $(row).find("td").eq(0).html(link);
                 $(row).append("<td />");
                 $(row).find("td").eq(1).html(course.courseName);
                 $(row).append("<td />");
@@ -134,3 +138,6 @@ function LiveSearch() {
         }
     });
 }
+
+
+

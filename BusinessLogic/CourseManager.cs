@@ -10,6 +10,21 @@ namespace CAOSelect.BusinessLogic
     public class CourseManager
     {
         CourseDAO courseData = new CourseDAO();
+        RequiredSubjectDAO requiredSubjectData = new RequiredSubjectDAO();
+
+
+
+        public List<RequiredSubject> GetRequiredSubjectsbyId(String courseID)
+        {
+            List<RequiredSubject> allrequired = requiredSubjectData.getRequiredSubjects();
+
+            //https://ucc.instructure.com/courses/39791/files/4202496?module_item_id=1221939
+            var rsubjects = allrequired.Where(x => x.course.CourseID == courseID);
+
+            return rsubjects.ToList();
+        }
+
+
         
 
         public CAOSubject getCoursebyID(String courseID)

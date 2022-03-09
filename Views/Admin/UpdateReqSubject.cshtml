@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<CAOSelect.Models.RequiredSubject>
+
+@{
+    ViewData["Title"] = "RequiredSubjects";
+}
+<form asp-controller="Admin" asp-action="AddReqSubject">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Subject Name</th>
+                <th scope="col">Subject Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>@Model[i].subject.SubjectName</td>
+                    <td>@Model[i].Level</td>
+                    <td><a class="btn btn-danger" href="@("/Admin/DeleteReq?courseID=" + Model[i].course.CourseID + "&subjectID=" + Model[i].subject.SubjectID)">Delete</a></td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    <input type="hidden" name="CourseID" value="@ViewBag.Courseid" />
+                    <select required class="custom-select" id="tlidrop" name="SubjectName">
+
+                        <option value="none" selected disabled hidden>
+                            Select an Option
+                        </option>
+                        <!--Looping through all colleges and adding them to a drop down list-->
+                        @foreach (var subject in ViewBag.subjects)
+                        {
+                            <option class="dropdown-item" name="subjects" value="@subject.SubjectName">@subject.SubjectName</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    <select required class="custom-select" id="lvl" name="Level">
+                        <option value="none" selected disabled hidden>
+                            Select an Option
+                        </option>
+                        <option class="dropdown-item" name="Higher" value="Higher">Higher</option>
+                        <option class="dropdown-item" name="Ordinary" value="Ordinary">Ordinary</option>
+                        <option class="dropdown-item" name="Foundation" value="Lower">Foundation</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="submit" value="Add" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
