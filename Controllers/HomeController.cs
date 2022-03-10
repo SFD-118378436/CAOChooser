@@ -40,6 +40,11 @@ namespace CAOSelect.Controllers
             return View(courses);
         }
 
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction(nameof(Index));
+        }
 
         public JsonResult GetSearchingData(string searchString, string college, string level)
         {
